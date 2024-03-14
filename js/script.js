@@ -47,6 +47,10 @@ function updateChart(chart) {
 }
 
 window.onload = function () {
+  document.getElementById("download").addEventListener("click", function () {
+    downloadCanvasAsImage();
+  });
+
   var ctx = document.getElementById("myChart").getContext("2d");
   var myChart = new Chart(ctx, {
     type: "bar",
@@ -97,3 +101,11 @@ window.onload = function () {
       updateChart(myChart);
     });
 };
+
+function downloadCanvasAsImage() {
+  var canvas = document.getElementById("myChart");
+  var link = document.createElement("a");
+  link.download = "chart.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
